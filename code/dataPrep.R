@@ -4,11 +4,6 @@ lc = read.csv("data/longCarb.csv")
 lr = read.csv("data/longReservoir.csv")
 
 # US Pb210 data from Oliver et al., 2009
-pb.3510 = read.csv("data/pb210_3510.csv")
-
-
-
-lar = numeric()
 
 
 
