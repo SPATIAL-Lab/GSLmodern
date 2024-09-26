@@ -34,6 +34,9 @@ model {
   ar.eps[1] = 0
   dens.eps[1] = 0
   
+#  ar.phi ~ dbeta(2, 2)
+#  dens.phi ~ dbeta(2, 2)
+  
   dr ~ dunif(0.1, 0.7)
   
   ar[1] ~ dunif(0.01, 0.2)
