@@ -28,7 +28,7 @@ names(mass) = c("depth.ind", "cdm", "cdm.pre")
 
 ## Objects for analysis
 data = list("ds" = ds, "nd" = nd, "pb210" = pb210, "mass" = mass)
-parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "dens")
+parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "rho")
 
 ## MCMC
 post = jags.parallel(data, NULL, parms, "code/model210.R", n.burnin = 2e3,
@@ -45,13 +45,24 @@ plot(post$BUGSoutput$mean$cdm, depths, ylim = rev(range(depths)),
      type = "l", lwd = 2, xlim = range(mass$cdm))
 points(mass$cdm, depths[mass$depth.ind], pch = 21)
 
-plot(post$BUGSoutput$mean$age, post$BUGSoutput$mean$ar)
-plot(depths, post$BUGSoutput$mean$dens)
+ar = apply(post$BUGSoutput$sims.list$ar, 2, quantile, c(0.025, 0.5, 0.975))
+plot(ar[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ar))
+lines(ar[1,], depths)
+lines(ar[3,], depths)
+
+rho = apply(post$BUGSoutput$sims.list$rho, 2, quantile, c(0.025, 0.5, 0.975))
+plot(rho[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(rho))
+lines(rho[1,], depths)
+lines(rho[3,], depths)
 
 ages = apply(post$BUGSoutput$sims.list$age, 2, quantile, c(0.025, 0.5, 0.975))
-plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)))
+plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ages))
 lines(ages[1,], depths)
 lines(ages[3,], depths)
+
 
 ## Save
 post.3510 = post
@@ -81,7 +92,7 @@ names(mass) = c("depth.ind", "cdm", "cdm.pre")
 
 ## Objects for analysis
 data = list("ds" = ds, "nd" = nd, "pb210" = pb210, "mass" = mass)
-parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "dens")
+parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "rho")
 
 ## MCMC
 post = jags.parallel(data, NULL, parms, "code/model210.R", n.burnin = 5e3,
@@ -98,11 +109,21 @@ plot(post$BUGSoutput$mean$cdm, depths, ylim = rev(range(depths)),
      type = "l", lwd = 2, xlim = range(mass$cdm))
 points(mass$cdm, depths[mass$depth.ind], pch = 21)
 
-plot(post$BUGSoutput$mean$age, post$BUGSoutput$mean$ar)
-plot(depths, post$BUGSoutput$mean$dens)
+ar = apply(post$BUGSoutput$sims.list$ar, 2, quantile, c(0.025, 0.5, 0.975))
+plot(ar[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ar))
+lines(ar[1,], depths)
+lines(ar[3,], depths)
+
+rho = apply(post$BUGSoutput$sims.list$rho, 2, quantile, c(0.025, 0.5, 0.975))
+plot(rho[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(rho))
+lines(rho[1,], depths)
+lines(rho[3,], depths)
 
 ages = apply(post$BUGSoutput$sims.list$age, 2, quantile, c(0.025, 0.5, 0.975))
-plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)))
+plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ages))
 lines(ages[1,], depths)
 lines(ages[3,], depths)
 
@@ -134,7 +155,7 @@ names(mass) = c("depth.ind", "cdm", "cdm.pre")
 
 ## Objects for analysis
 data = list("ds" = ds, "nd" = nd, "pb210" = pb210, "mass" = mass)
-parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "dens")
+parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "rho")
 
 ## MCMC
 post = jags.parallel(data, NULL, parms, "code/model210.R", n.burnin = 2e3,
@@ -151,11 +172,21 @@ plot(post$BUGSoutput$mean$cdm, depths, ylim = rev(range(depths)),
      type = "l", lwd = 2, xlim = range(mass$cdm))
 points(mass$cdm, depths[mass$depth.ind], pch = 21)
 
-plot(post$BUGSoutput$mean$age, post$BUGSoutput$mean$ar)
-plot(depths, post$BUGSoutput$mean$dens)
+ar = apply(post$BUGSoutput$sims.list$ar, 2, quantile, c(0.025, 0.5, 0.975))
+plot(ar[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ar))
+lines(ar[1,], depths)
+lines(ar[3,], depths)
+
+rho = apply(post$BUGSoutput$sims.list$rho, 2, quantile, c(0.025, 0.5, 0.975))
+plot(rho[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(rho))
+lines(rho[1,], depths)
+lines(rho[3,], depths)
 
 ages = apply(post$BUGSoutput$sims.list$age, 2, quantile, c(0.025, 0.5, 0.975))
-plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)))
+plot(ages[2,], depths, type = "l", lwd = 2, ylim = rev(range(depths)),
+     xlim = range(ages))
 lines(ages[1,], depths)
 lines(ages[3,], depths)
 
