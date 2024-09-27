@@ -65,7 +65,7 @@ dd = d.DDQ
 
 ## Step size and number, cumulative mass units
 ds = 0.1
-bd = 30
+bd = 32
 nd = bd / ds
 depths = round(seq(ds, bd, by = ds), 1)
 
@@ -118,7 +118,7 @@ dd = d.DDL
 
 ## Step size and number, cumulative mass units
 ds = 0.1
-bd = 15
+bd = 32
 nd = bd / ds
 depths = round(seq(ds, bd, by = ds), 1)
 
