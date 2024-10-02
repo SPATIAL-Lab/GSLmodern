@@ -14,6 +14,7 @@ sa.DDL = sa[sa$Core == "DDL",]
 # Reservoir ages
 rcd.DDQ = sa.DDQ[!is.na(sa.DDQ$Fmc), c(1, 2, 5, 12, 13)]
 ## DDQ_29 210Pb age uncertainty too high to usefully interpret reservoir age
+## Also has unusually low d13C
 rcd.DDQ = rcd.DDQ[rcd.DDQ$ID != "DDQ_29",]
 rcd.DDL = sa.DDL[!is.na(sa.DDL$Fmc), c(1, 2, 5, 12, 13)]
 
@@ -28,20 +29,34 @@ ages = cbind(ages.DDQ, ages.DDL)
 
 ## Start of iterative analysis
 niter = 1000
+
+## Space for R values
 R = matrix(nrow = nrow(rcd), ncol = niter)
+
+## Iterate over samples
 for(i in 1:nrow(rcd)){
-  ## Sample age
+  ## Draw 210Pb ages
   a = sample(ages[, i], niter)
-  Fmc = rnorm(niter, rcd$Fmc[i], rcd$Fmc.err[i])
-  FmT = Fmc * exp(a / 8267)
   
+  ## Draw Fmc values from samples
+  Fmc = rnorm(niter, rcd$Fmc[i], rcd$Fmc.err[i])
+  
+  ## Convert to original Fmc
+  ## Account for difference between 210Pb age model zero (2007) and analysis year (2011) 
+  FmT = Fmc * exp((a + 4) / 8267)
+  
+  ## Space to index sample age against calibration curve
   aind = integer(niter)
   for(j in 1:niter){
+    ## Find calibration curve age closest to sample age, return index
     aoff = abs(a[j] - cal$age)
-    aind = match(min(aoff), aoff)
+    aind[j] = match(min(aoff), aoff)
   }
+  
+  ## Draw value of atmospheric Fmc at sample age
   FmT_atm = rnorm(niter, cal$F14C[aind], cal$F14C.sd[aind])
   
+  ## Reservoir age
   R[i, ] = -8033 * log(FmT / FmT_atm)
 }
 row.names(R) = rcd$ID
