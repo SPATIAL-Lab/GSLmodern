@@ -32,7 +32,7 @@ data = list("ds" = ds, "nd" = nd, "pb210" = pb210, "mass" = mass)
 parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "rho", "rho.0", "phi.0", "z.c")
 
 ## MCMC
-post = jags.parallel(data, NULL, parms, "code/model210.R", n.burnin = 2e3,
+post = jags.parallel(data, NULL, parms, "code/models/model210.R", n.burnin = 2e3,
                      n.iter = 6e3, n.chains = 3)
 
 ## Check results
@@ -96,7 +96,7 @@ data = list("ds" = ds, "nd" = nd, "pb210" = pb210, "mass" = mass)
 parms = c("ar.pre", "dr", "age", "ar", "pb", "cdm", "rho", "rho.0", "phi.0", "z.c")
 
 ## MCMC
-post = jags.parallel(data, NULL, parms, "code/model210.R", n.burnin = 1e4,
+post = jags.parallel(data, NULL, parms, "code/models/model210.R", n.burnin = 1e4,
                           n.iter = 1.5e4, n.chains = 3)
 
 ## Check results
