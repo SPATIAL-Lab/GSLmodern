@@ -73,6 +73,10 @@ text(4, -6.8, "+ E/I", pos = 2, srt = 90)
 arrows(4, -3.7, 2, -3.7, length = 0.1)
 text(3, -3.7, "+ Organic C", pos = 3)
 
+text(par("usr")[1] + diff(par("usr")[1:2]) * 0.05,
+     par("usr")[4] - diff(par("usr")[3:4]) * 0.05,
+     "A", adj = c(0, 1))
+
 # Carbon panel
 ## Add carbonate d13C at radiocarbon levels, convert to R to F14R
 lr = add.d13C(lr, lc)
@@ -92,6 +96,9 @@ plot(lr$F14R, lr$d13Cc, xlim = c(0.65, 1), ylim = c(-5, 5),
      pch = 16, col = "gray70", cex = 0.75,
      xlab = expression("F"^{14}*"R"),
      ylab = expression(delta^{13}*"C"[carb]))
+
+kd = kde(as.matrix(lr[c("F14R", "d13Cc")]))
+plot(kd, cont = 95, drawlabels = FALSE, add = TRUE, lwd = 3, col = "gray70")
 
 points(R.DDL$F14R, R.DDL$d13Cc, pch = 21, bg = "palegreen3", cex = 1.5)
 points(R.DDQ$F14R, R.DDQ$d13Cc, pch = 21, bg = "palegreen3", cex = 1.5)
@@ -119,10 +126,17 @@ lines(c(0, 1),
 lines(c(1, 1), c(d13Cc.atm$d13Cc, 
                  d13Cc.org$d13Cc * Forg + d13Cc.atm$d13Cc * (1 - Forg)), 
       lwd = 2)
+points(1, d13Cc.atm$d13Cc, pch = 16)
+points(1, d13Cc.org$d13Cc * Forg + d13Cc.atm$d13Cc * (1 - Forg), pch = 16)
 
-text(1, d13Cc.atm$d13Cc, "100% atm", adj = c(1.05, 2.2))
+text(1, d13Cc.atm$d13Cc, "100% atm", adj = c(1.05, 2.3))
 text(1, d13Cc.org$d13Cc * Forg + d13Cc.atm$d13Cc * (1 - Forg), 
-     "50:50 atm:org", adj = c(1.05, -2.1))
+     "50:50 atm:org", adj = c(1.05, -1.8))
+text(0.68, 0, "100% rock", pos = 3)
+arrows(0.72, 0, 0.64, 0, length = 0.1)
 
+text(par("usr")[1] + diff(par("usr")[1:2]) * 0.05,
+     par("usr")[4] - diff(par("usr")[3:4]) * 0.05,
+     "B", adj = c(0, 1))
 
 dev.off()
