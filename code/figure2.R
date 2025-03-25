@@ -8,20 +8,22 @@ source("code/models/Cmodel.R")
 # Calcite precipitation temperature
 tc = 18
 
-# Bivariate kernal density for Holocene
+# Bivariate kernel density for Holocene
 library(ks)
 kd = kde(as.matrix(lc[c("d13C.carb", "d18O.carb")]))
 
 # Initialize plot
-png("out/Fig2.png", 5, 10, "in", res = 600)
-layout(matrix(c(1, 2), nrow = 2))
-par(mar = c(5, 5, 1, 1))
+png("out/Fig2.png", width = 5.2, height = 9.2, units = "in", res = 600)
+layout(matrix(c(1, 2), nrow = 2), heights = c(lcm(4.2 * 2.54), lcm(5 * 2.54)))
+par(mai = c(0, 1, 0.2, 0.2))
 
 # Holocene data
 plot(lc$d13C.carb, lc$d18O.carb, pch = 16, col = "gray70", 
-     xlim = c(-5, 5), ylim = c(-9, -3), cex = 0.75, 
+     xlim = c(-5, 5), ylim = c(-9, -3), cex = 0.75, axes = FALSE,
      xlab = expression(delta^{13}*"C"[carb]),
      ylab = expression(delta^{18}*"O"[carb]))
+axis(2)
+box()
 plot(kd, cont = 95, drawlabels = FALSE, add = TRUE, lwd = 3, col = "gray70")
 
 # Model scenario 1
@@ -91,8 +93,8 @@ R.DDQ = add.d13C(R.DDQ, sa.sub)
 R.DDQ$F14R = exp(R.DDQ$R.med / -8033)
 
 ## Plot
-par(mar = c(5, 5, 1, 1))
-plot(lr$d13Cc, lr$F14R, xlim = c(-5, 5), ylim = c(0.65, 1), 
+par(mai = c(1, 1, 0, 0.2))
+plot(lr$d13Cc, lr$F14R, xlim = c(-5, 5), ylim = c(0.65, 1.03), 
      pch = 16, col = "gray70", cex = 0.75,
      xlab = expression(delta^{13}*"C"[carb]),
      ylab = expression("F"^{14}*"R"))
