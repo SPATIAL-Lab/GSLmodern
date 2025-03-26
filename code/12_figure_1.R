@@ -1,20 +1,7 @@
 source("code/loadData.R")
+source("code/X1_helpers.R")
 
-# Plot colors
-alpha = 100
-qbg = "cadetblue"
-qbg.t = col2rgb(qbg)
-qbg.t = rgb(qbg.t[1], qbg.t[2], qbg.t[3], alpha, maxColorValue = 255)
-lbg = "coral2"
-lbg.t = col2rgb(lbg)
-lbg.t = rgb(lbg.t[1], lbg.t[2], lbg.t[3], alpha, maxColorValue = 255)
-
-# Age function
-reage = function(a){
-  return(sqrt(2007 - a))
-}
-
-# Plotting
+# Plot space
 png("out/Fig1.png", 6, 8.3, "in", res = 600)
 layout(matrix(c(1, 2, 3), nrow = 3), 
        heights = c(lcm(2.6 * 2.54), lcm(2.5 * 2.54), lcm(3.2 * 2.54)))
