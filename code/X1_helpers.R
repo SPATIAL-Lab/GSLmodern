@@ -47,3 +47,53 @@ lbg.t = rgb(lbg.t[1], lbg.t[2], lbg.t[3], alpha, maxColorValue = 255)
 obg = "palegreen3"
 mbg = "darkgoldenrod2"
 ybg = "red3"
+
+clines = function(s){
+  for(i in 1:2){
+    for(j in (i+1):3){
+      lines(s$d13Cc[c(i, j)], s$FmA[c(i, j)], lwd = 2)
+    }
+  }
+  
+  # Index and dimensions
+  inds = c(1, 2, 3, 1)
+  fracs = seq(0, 1, by = 0.1)
+  xs = ys = matrix(nrow = length(fracs), ncol = 3)
+
+  # Ternary line vertices
+  for(i in 1:3){
+    j = inds[i + 1]
+    xs[, i] = s$d13Cc[i] + fracs * (s$d13Cc[j] - s$d13Cc[i])
+    ys[, i] = s$FmA[i] + fracs * (s$FmA[j] - s$FmA[i])
+  }  
+
+  labs = c("Rock", "Atm", "Org")
+  
+  for(i in 1:3){
+    for(j in seq_along(fracs)){
+      lines(c(xs[j, inds[i]], xs[length(fracs) + 1 - j, inds[i + 1]]), 
+              c(ys[j, inds[i]], ys[length(fracs) + 1 - j, inds[i + 1]]), 
+              col = "grey30", lty = 3)
+    }
+    dy = diff(c(ys[1, inds[i]], ys[length(fracs), inds[i + 1]])) / 
+      diff(par("usr")[3:4])
+    dx = diff(c(xs[1, inds[i]], xs[length(fracs), inds[i + 1]])) / 
+      diff(par("usr")[1:2])
+    if(dy == 0){
+      inbds = seq_along(fracs)[ys[, i] > par("usr")[3] & fracs != 0]
+      text(rep(par("usr")[1]), ys[inbds, i], 
+           paste0(fracs[inbds] * 100, "% ", labs[i]), 
+           cex = 0.6, adj = c(-0.1, -0.2))
+    } else if(dy / dx > 0){
+      inbds = seq_along(fracs)[xs[, i] > par("usr")[1] & fracs != 0]
+      text(xs[inbds, i], ys[inbds, i], 
+           paste0(fracs[inbds] * 100, "% ", labs[i]), 
+           cex = 0.6, adj = c(-0.1, 1), srt = 180 * atan2(dy, dx) / pi + 180)
+    } else{
+      inbds = seq_along(fracs)[ys[, i] > par("usr")[3] & fracs != 0]
+      text(xs[inbds, i], ys[inbds, i], 
+           paste0(fracs[inbds] * 100, "% ", labs[i]), 
+           cex = 0.6, adj = c(-0.2, 0.5), srt = 180 * atan2(-dy, -dx) / pi)
+    }
+  }
+}
