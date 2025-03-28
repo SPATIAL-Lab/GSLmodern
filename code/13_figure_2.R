@@ -68,7 +68,7 @@ points(R.DDQ$d13Cc[R.DDQ$Age.med > 1959],
 
 text(par("usr")[1] + diff(par("usr")[1:2]) * 0.05,
      par("usr")[4] - diff(par("usr")[3:4]) * 0.05,
-     "B", adj = c(0, 1))
+     "A", adj = c(0, 1))
 
 # Oxygen panel
 par(mai = c(1, 1, 0, 0.2))
