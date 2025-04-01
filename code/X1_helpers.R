@@ -83,17 +83,17 @@ clines = function(s){
       inbds = seq_along(fracs)[ys[, i] > par("usr")[3] & fracs != 0]
       text(rep(par("usr")[1]), ys[inbds, i], 
            paste0(fracs[inbds] * 100, "% ", labs[i]), 
-           cex = 0.6, adj = c(-0.1, -0.2))
+           cex = 0.7, adj = c(-0.1, -0.2))
     } else if(dy / dx > 0){
       inbds = seq_along(fracs)[xs[, i] > par("usr")[1] & fracs != 0]
       text(xs[inbds, i], ys[inbds, i], 
            paste0(fracs[inbds] * 100, "% ", labs[i]), 
-           cex = 0.6, adj = c(-0.1, 0.5), srt = 180 * atan2(dy, dx) / pi + 180)
+           cex = 0.7, adj = c(-0.1, 0.5), srt = 180 * atan2(dy, dx) / pi + 180)
     } else{
       inbds = seq_along(fracs)[ys[, i] > par("usr")[3] & fracs != 0]
       text(xs[inbds, i], ys[inbds, i], 
            paste0(fracs[inbds] * 100, "% ", labs[i]), 
-           cex = 0.6, adj = c(-0.2, 0.5), srt = 180 * atan2(-dy, -dx) / pi)
+           cex = 0.7, adj = c(-0.2, 0.5), srt = 180 * atan2(-dy, -dx) / pi)
     }
   }
 }

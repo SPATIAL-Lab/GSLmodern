@@ -1,7 +1,7 @@
 Omod = function(EI, tc){
   # Evaporation conditions taken from https://doi.org/10.1002/2016WR019104 
-  tmp = 13 + 273.15
-  h = 0.51
+  tmp = tc + 273.15
+  h = 0.5
   dP = -16
   
   # Steady state model from https://doi.org/10.1016/j.jhydrol.2015.02.010 
@@ -24,15 +24,15 @@ Omod = function(EI, tc){
   d18Ow = (EI * m * dS + dP) / (1 + EI * m)
 
   # Carbonate d18O
-  ## Calcite precipitation temperature
-  temp.cal = tc + 273.15
+  ## Aragonite precipitation temperature
+  temp.ag = tc + 273.15
   
-  ## Kim and O'Neil 1997 fractionation factor https://doi.org/10.1016/S0016-7037(97)00169-5
-  alpha.cal = exp(18.03 / temp.cal - 0.03242)
-  epsilon.cal = (alpha.cal - 1) * 1000
-  
+  ## Kim et al 2007 fractionation factor https://doi.org/10.1016/j.gca.2007.04.019
+  alpha.ag = exp(17.88 / temp.ag - 0.03114)
+  epsilon.ag = (alpha.ag - 1) * 1000
+
   ## d18Oc as VSMOW
-  d18Oc.VSMOW = (d18Ow + epsilon.cal) * alpha.cal
+  d18Oc.VSMOW = (d18Ow + epsilon.ag) * alpha.ag
   
   ## d18Oc as VPDB
   d18Oc = 0.97001 * d18Oc.VSMOW - 29.99
