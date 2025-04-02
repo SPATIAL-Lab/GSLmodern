@@ -81,8 +81,8 @@ par(mai = c(1, 1, 0, 0.2))
 ## Holocene data
 plot(lc$d13C.carb, lc$d18O.carb, pch = 16, col = "gray70", 
      xlim = xlim, ylim = c(-9, -3), cex = 1.25, 
-     xlab = expression(delta^{13}*"C"[carb]),
-     ylab = expression(delta^{18}*"O"[carb]))
+     xlab = expression(delta^{13}*"C"["carbonate"]*" (VPDB)"),
+     ylab = expression(delta^{18}*"O"["carbonate"]*" (VPDB)"))
 
 ## Model scenario 1 - Range of Fatm, terminal lake
 Fatm = seq(0.40, 1, by = 0.01)
