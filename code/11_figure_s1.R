@@ -8,7 +8,7 @@ load("bigout/ageModDDQ.rda")
 depths = dvec(32, 0.1)
 
 # Plot space
-png("out/FigS1.png", width = 8, height = 12, units = "in", res = 600)
+png("out/FigS1.png", width = 6, height = 9, units = "in", res = 600)
 layout(matrix(1:6, nrow = 3, byrow = TRUE))
 par(mar = c(5, 5, 1, 1))
 
