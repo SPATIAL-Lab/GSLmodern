@@ -1,4 +1,5 @@
 # Load data
+## Requires that 01_ageModel210.R has been run locally
 sa = read.csv("data/shortAll.csv")
 load("out/adDDL.rda")
 load("out/adDDQ.rda")

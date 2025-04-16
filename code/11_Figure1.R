@@ -1,5 +1,4 @@
-source("code/loadData.R")
-source("code/X1_helpers.R")
+source("code/X3_prepFigs.R")
 
 # Plot space
 png("out/Fig1.png", 6, 8.3, "in", res = 600)

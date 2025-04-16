@@ -1,7 +1,6 @@
-source("code/X1_helpers.R")
+source("code/X3_prepFigs.R")
 
-d = read.csv("data/shortAll.csv")
-d = d[!(d$Core %in% c("DDL", "DDQ")), ]
+d = sa[!(sa$Core %in% c("DDL", "DDQ")), ]
 
 sites = unique(d$Core)
 

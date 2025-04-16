@@ -1,5 +1,4 @@
-# Prep calibration data
-
+# Prep calibration curve data
 prep14C = function(){
   ## Intcal, https://intcal.org/curves/intcal20.14c 
   ic = read.csv("data/intcal20.14c", skip = 10)

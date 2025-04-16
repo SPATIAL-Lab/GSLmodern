@@ -1,5 +1,4 @@
-source("code/X1_helpers.R")
-source("code/X3_loadData.R")
+source("code/X3_prepFigs.R")
 
 # Load models
 source("code/models/Omodel.R")

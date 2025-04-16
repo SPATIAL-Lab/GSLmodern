@@ -1,4 +1,7 @@
-source("code/X1_helpers.R")
+# Load data
+## Requires that 01_ageModel210.R has been run locally
+source("code/X1_prep210.R")
+source("code/X3_prepFigs.R")
 load("out/data210_DDL.rda")
 load("out/data210_DDQ.rda")
 load("bigout/ageModDDL.rda")

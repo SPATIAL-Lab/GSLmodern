@@ -1,5 +1,5 @@
 library(R2jags)
-source("code/X1_helpers.R")
+source("code/X1_prep210.R")
 
 # Read and parse data from Oliver et al., 2009
 d = read.csv("data/pb210.csv")
@@ -54,4 +54,5 @@ ad.DDQ = data.frame("Depth" = depths, "Age.025" = ages[1,],
                     "Age.med" = ages[2,], "Age.975" = ages[3,])
 save(ad.DDQ, file = "out/adDDQ.rda")
 
+if(!dir.exists("bigout")) dir.create("bigout")
 save(post.DDQ, file = "bigout/ageModDDQ.rda")
