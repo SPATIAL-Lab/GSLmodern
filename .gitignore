@@ -48,5 +48,6 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# Large output files
+# Large I/O files
 bigout/
+bigdata/
