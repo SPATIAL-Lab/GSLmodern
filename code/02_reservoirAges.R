@@ -13,8 +13,8 @@ sa.DDL = sa[sa$Core == "DDL",]
 sa.DDQ = sa[sa$Core == "DDQ",]
 
 # Reservoir ages
-rcd.DDL = sa.DDL[!is.na(sa.DDL$Fmc), c(1, 2, 5, 12, 13)]
-rcd.DDQ = sa.DDQ[!is.na(sa.DDQ$Fmc), c(1, 2, 5, 12, 13)]
+rcd.DDL = sa.DDL[!is.na(sa.DDL$Fmc), c(1, 2, 5, 12, 13, 14)]
+rcd.DDQ = sa.DDQ[!is.na(sa.DDQ$Fmc), c(1, 2, 5, 12, 13, 14)]
 ## DDQ_29 210Pb age uncertainty too high to usefully interpret reservoir age
 ## Also has unusually low d13C
 rcd.DDQ = rcd.DDQ[rcd.DDQ$ID != "DDQ_29",]
@@ -67,6 +67,6 @@ save(R, file = "out/Rages.rda")
 R.sum = t(apply(R, 1, quantile, c(0.025, 0.5, 0.975)))
 Age.sum = 2007 - t(apply(ages, 2, quantile, c(0.025, 0.5, 0.975)))
 R.sum = cbind(rcd, Age.sum, R.sum)
-names(R.sum)[6:11] = c("Age.025", "Age.med", "Age.975", "R.025", "R.med", "R.975")
+names(R.sum)[7:12] = c("Age.025", "Age.med", "Age.975", "R.025", "R.med", "R.975")
 
 save(R.sum, file = "out/Rsummary.rda")

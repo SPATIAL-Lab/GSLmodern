@@ -22,7 +22,7 @@ xmax = 0.08
 ymin = 0.02
 ymax = 0.25
 
-rect(bds[1], bds[3], bds[1] + (xmax + 0.1) * diff(bds[1:2]),
+rect(bds[1], bds[3], bds[1] + (xmax + 0.085) * diff(bds[1:2]),
      bds[3] + (ymax + 0.02) * diff(bds[3:4]), col = rgb(1, 1, 1, 0.75),
      border = 1, xpd = TRUE)
 
@@ -68,21 +68,42 @@ text(bds[1] + 0.35 * diff(bds[1:2]),
      bds[3] + 0.85 * diff(bds[3:4]),
      "Gunnison Bay", adj = c(0, 0.5))
 text(bds[1] + 0.21 * diff(bds[1:2]),
-     bds[3] + 0.49 * diff(bds[3:4]),
+     bds[3] + 0.48 * diff(bds[3:4]),
      "Rail causeway", adj = c(1, 0.5), xpd = TRUE)
+text(bds[1] + 0.80 * diff(bds[1:2]),
+     bds[3] + 0.12 * diff(bds[3:4]),
+     "East Lake\nFault", adj = c(0, 0.5), xpd = TRUE)
+text(bds[1] + 0.32 * diff(bds[1:2]),
+     bds[3] + 0.21 * diff(bds[3:4]),
+     "Carrington\nFault", adj = c(1, 0.5), xpd = TRUE)
+text(bds[1] + 0.80 * diff(bds[1:2]),
+     bds[3] + 0.45 * diff(bds[3:4]),
+     "Ogden Bay", adj = c(0, 0.5))
 
 lines(c(bds[1] + 0.24 * diff(bds[1:2]),
         bds[1] + 0.33 * diff(bds[1:2])),
       c(bds[3] + 0.35 * diff(bds[3:4]),
-        bds[3] + 0.33 * diff(bds[3:4])), lwd = 3, col = "grey20")
+        bds[3] + 0.35 * diff(bds[3:4])), lwd = 3, col = "grey20")
 lines(c(bds[1] + 0.34 * diff(bds[1:2]),
         bds[1] + 0.26 * diff(bds[1:2])),
       c(bds[3] + 0.85 * diff(bds[3:4]),
         bds[3] + 0.82 * diff(bds[3:4])), lwd = 3, col = "grey20")
 lines(c(bds[1] + 0.22 * diff(bds[1:2]),
         bds[1] + 0.30 * diff(bds[1:2])),
-      c(bds[3] + 0.49 * diff(bds[3:4]),
-        bds[3] + 0.53 * diff(bds[3:4])), lwd = 3, col = "grey20")
+      c(bds[3] + 0.48 * diff(bds[3:4]),
+        bds[3] + 0.525 * diff(bds[3:4])), lwd = 3, col = "grey20")
+lines(c(bds[1] + 0.79 * diff(bds[1:2]),
+        bds[1] + 0.73 * diff(bds[1:2])),
+      c(bds[3] + 0.12 * diff(bds[3:4]),
+        bds[3] + 0.16 * diff(bds[3:4])), lwd = 3, col = "grey20")
+lines(c(bds[1] + 0.32 * diff(bds[1:2]),
+        bds[1] + 0.356 * diff(bds[1:2])),
+      c(bds[3] + 0.24 * diff(bds[3:4]),
+        bds[3] + 0.30 * diff(bds[3:4])), lwd = 3, col = "grey20")
+lines(c(bds[1] + 0.79 * diff(bds[1:2]),
+        bds[1] + 0.70 * diff(bds[1:2])),
+      c(bds[3] + 0.45 * diff(bds[3:4]),
+        bds[3] + 0.45 * diff(bds[3:4])), lwd = 3, col = "grey20")
 
 bds = par("usr")
 bds = c(grconvertX(bds[1:2], "user", "ndc"),

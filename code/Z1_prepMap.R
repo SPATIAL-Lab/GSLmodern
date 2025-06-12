@@ -15,8 +15,9 @@ gsl = aggregate(gsl[gsl$ELEVATION == 4200])
 faults = vect("bigdata/Utah_Quaternary_Faults.shp")
 
 faults = project(faults, gsl)
-faults = intersect(faults, gsl)
-faults = faults[faults$FaultAge == "<15,000"]
+fs = c(5089, 11591, 5050, 5000, 5007, 5009, 4965, 5013, 4964, 5013, 11593,
+       5001)
+faults = faults[faults$OBJECTID %in% fs]
 
 sites = read.csv("data/Sites.csv")
 sites = vect(sites, geom = c("Longitude", "Latitude"), crs = "WGS84")
