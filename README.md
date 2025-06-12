@@ -7,12 +7,14 @@ Scripts used for data analysis and plotting
 - **X1_prep210.R** Helper functions for 210Pb modeling
 - **X2_prep14C.R** Helper functions for 14C reservoir age modeling
 - **X3_prepFigs.R** Helper functions for plotting
+- **Z1_prepMap.R** Helper code for preparing map objects used in Figure 1; not portable due to use of large data sets not included in the repository (see code for data sources)
 - **01_ageModel210.R** Fit 210Pb age models
 - **02_reservoirAges.R** Calculate reservoir ages
 - **11_Figure1.R** Plot Fig 1
 - **12_Figure2.R** Plot Fig 2
-- **13_FigureS1.R** Plot Fig S1
-- **14_FigureS2.R** Plot Fig S2
+- **13_Figure3.R** Plot Fig 3
+- **14_FigureS1.R** Plot Fig S1
+- **15_FigureS2.R** Plot Fig S2
 - **models/Cmodel.R** Carbon isotope mixing model for GSL DIC
 - **models/Omodel.R** Oxygen isotope mass balance model for GSL water
 - **models/model210.R** Unsupported 210Pb age model 
